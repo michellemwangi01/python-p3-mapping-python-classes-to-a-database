@@ -27,14 +27,13 @@ class Song:
         """
         CURSOR.execute(sql, (self.name, self.album))
         self.id = CURSOR.execute("SELECT last_insert_rowid() FROM Songs").fetchone()[0]  # retrieve the ID assigned to the song when
-        #         # it is added to the database and set it as the object ID
+                # it is added to the database and set it as the object ID
         CONN.commit()  # close the connection always after saving
 
     @classmethod
     def create(cls, name, album):  # create and save songs using one method
         song = Song(name, album)
         song.save()
-        CONN.commit()
         return song
 
 # CURSOR.execute(" DROP TABLE IF EXISTS Songs")
